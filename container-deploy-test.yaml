@@ -1,0 +1,95 @@
+kind: Secret
+apiVersion: v1
+metadata:
+name: gitlab-pull-secret
+namespace: ch-container-deploy-test
+type: kubernetes.io/dockerconfigjson
+data:
+.dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICAgICAgICJ1c2VybmFtZSI6ICJkZXBsb3ktdXNlciIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICI4c3hlak5tQ2FnV1VvY2tqdEdBMiIsCiAgICAgICAgICAgICJlbWFpbCI6ICJyaGFuZXlAaWdudy5pbyIsCiAgICAgICAgICAgICJhdXRoIjogIlpHVndiRzk1TFhWelpYSTZPSE40WldwT2JVTmhaMWRWYjJOcmFuUkhRVEk9IgogICAgCX0KICAgIH0KfQo=
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: webby
+namespace: <INPUT NAMESPACE HERE>
+spec:
+replicas: 3
+selector:
+    matchLabels:
+    app: webby
+template:
+    metadata:
+    labels:
+        app: webby
+    spec:
+    terminationGracePeriodSeconds: 10
+    containers:
+    - name: webby
+        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-aws-pedemo/webby:v1.0
+        imagePullPolicy: Always
+        
+        resources:
+        requests:
+            cpu: 100m
+            memory: 64Mi
+        limits:
+            cpu: 200m
+            memory: 128Mi
+    imagePullSecrets:
+        - name: gitlab-pull-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webby-service
+  namespace: <INPUT NAMESPACE HERE>
+spec:
+  type: NodePort
+  selector:
+    app: webby
+  ports:
+    - port: 80
+      targetPort: 9999
+      nodePort: 31999
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: condb
+namespace: <INPUT NAMESPACE HERE>
+spec:
+selector:
+    matchLabels:
+    app: condb
+template:
+    metadata:
+    labels:
+        app: condb
+    spec:
+    terminationGracePeriodSeconds: 10
+    containers:
+    - name: condb
+        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-aws-pedemo/condb:v1.0
+        imagePullPolicy: Always
+        
+        resources:
+        requests:
+            cpu: 200m
+            memory: 128Mi
+        limits:
+            cpu: 400m
+            memory: 256Mi
+    imagePullSecrets:
+        - name: gitlab-pull-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: condb-service
+  namespace: webby
+spec:
+  selector:
+    app: condb
+  ports:
+    - port: 8888
+      targetPort: 8888
