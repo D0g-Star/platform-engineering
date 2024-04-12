@@ -2,7 +2,7 @@ kind: Secret
 apiVersion: v1
 metadata:
 name: gitlab-pull-secret
-namespace: ch-container-deploy-test
+namespace: pedemo-n1um-user0
 type: kubernetes.io/dockerconfigjson
 data:
 ---
@@ -10,7 +10,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
 name: webby
-namespace: <INPUT NAMESPACE HERE>
+namespace: pedemo-n1um-user0
 spec:
 replicas: 3
 selector:
@@ -41,7 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: webby-service
-  namespace: <INPUT NAMESPACE HERE>
+  namespace: pedemo-n1um-user0
 spec:
   type: NodePort
   selector:
@@ -55,7 +55,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
 name: condb
-namespace: <INPUT NAMESPACE HERE>
+namespace: pedemo-n1um-user0
 spec:
 selector:
     matchLabels:
@@ -85,7 +85,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: condb-service
-  namespace: webby
+  namespace: pedemo-n1um-user0
 spec:
   selector:
     app: condb
