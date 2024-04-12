@@ -5,6 +5,8 @@ name: gitlab-pull-secret
 namespace: pedemo-n1um-user0
 type: kubernetes.io/dockerconfigjson
 data:
+  .dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICAgICAgICJ1c2VybmFtZSI6ICJkZXBsb3ktdXNlciIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICI4c3hlak5tQ2FnV1VvY2tqdEdBMiIsCiAgICAgICAgICAgICJlbWFpbCI6ICJyaGFuZXlAaWdudy5pbyIsCiAgICAgICAgICAgICJhdXRoIjogIlpHVndiRzk1TFhWelpYSTZPSE40WldwT2JVTmhaMWRWYjJOcmFuUkhRVEk9IgogICAgCX0KICAgIH0KfQo=
+
 ---
 apiVersion: apps/v1
 kind: Deployment
