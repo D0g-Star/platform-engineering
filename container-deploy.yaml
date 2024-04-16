@@ -61,7 +61,7 @@ namespace: pedemo-c8e6-user0-testing-demo
 spec:
 selector:
     matchLabels:
-    app: condb
+      app: condb
 template:
     metadata:
     labels:
