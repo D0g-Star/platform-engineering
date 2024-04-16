@@ -1,8 +1,9 @@
+---
 kind: Secret
 apiVersion: v1
 metadata:
-name: gitlab-pull-secret
-namespace: pedemo-c8e6-user0-testing-demo
+  name: gitlab-pull-secret
+  namespace: pedemo-c8e6-user0-testing-demo
 type: kubernetes.io/dockerconfigjson
 data:
   .dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICAgICAgICJ1c2VybmFtZSI6ICJkZXBsb3ktdXNlciIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICI4c3hlak5tQ2FnV1VvY2tqdEdBMiIsCiAgICAgICAgICAgICJlbWFpbCI6ICJyaGFuZXlAaWdudy5pbyIsCiAgICAgICAgICAgICJhdXRoIjogIlpHVndiRzk1TFhWelpYSTZPSE40WldwT2JVTmhaMWRWYjJOcmFuUkhRVEk9IgogICAgCX0KICAgIH0KfQo=
@@ -11,33 +12,34 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: webby
-namespace: pedemo-c8e6-user0-testing-demo
+  name: webby
+  namespace: pedemo-c8e6-user0-testing-demo
 spec:
-replicas: 3
-selector:
+  replicas: 3
+  selector:
     matchLabels:
       app: webby
-template:
+  template:
     metadata:
-    labels:
+      labels:
         app: webby
     spec:
-    terminationGracePeriodSeconds: 10
-    containers:
-    - name: webby
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: webby
         image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-aws-pedemo/webby:v1.0
         imagePullPolicy: Always
         
         resources:
-        requests:
+          requests:
             cpu: 100m
             memory: 64Mi
-        limits:
+          limits:
             cpu: 200m
             memory: 128Mi
-    imagePullSecrets:
+      imagePullSecrets:
         - name: gitlab-pull-secret
+
 ---
 apiVersion: v1
 kind: Service
@@ -52,36 +54,38 @@ spec:
     - port: 80
       targetPort: 9999
       nodePort: 31999
+      
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: condb
-namespace: pedemo-c8e6-user0-testing-demo
+  name: condb
+  namespace: pedemo-c8e6-user0-testing-demo
 spec:
-selector:
+  selector:
     matchLabels:
       app: condb
-template:
+  template:
     metadata:
-    labels:
+      labels:
         app: condb
     spec:
-    terminationGracePeriodSeconds: 10
-    containers:
-    - name: condb
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: condb
         image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-aws-pedemo/condb:v1.0
         imagePullPolicy: Always
         
         resources:
-        requests:
+          requests:
             cpu: 200m
             memory: 128Mi
-        limits:
+          limits:
             cpu: 400m
             memory: 256Mi
-    imagePullSecrets:
+      imagePullSecrets:
         - name: gitlab-pull-secret
+
 ---
 apiVersion: v1
 kind: Service
