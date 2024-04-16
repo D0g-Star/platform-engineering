@@ -1,4 +1,10 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pedemo-c8e6-user0-testing-demo
+
+---
 kind: Secret
 apiVersion: v1
 metadata:
