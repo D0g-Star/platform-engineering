@@ -2,7 +2,7 @@ kind: Secret
 apiVersion: v1
 metadata:
 name: gitlab-pull-secret
-namespace: pedemo-qdvw-user9
+namespace: pedemo-c8e6-user0-testing-demo
 type: kubernetes.io/dockerconfigjson
 data:
   .dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICAgICAgICJ1c2VybmFtZSI6ICJkZXBsb3ktdXNlciIsCiAgICAgICAgICAgICJwYXNzd29yZCI6ICI4c3hlak5tQ2FnV1VvY2tqdEdBMiIsCiAgICAgICAgICAgICJlbWFpbCI6ICJyaGFuZXlAaWdudy5pbyIsCiAgICAgICAgICAgICJhdXRoIjogIlpHVndiRzk1TFhWelpYSTZPSE40WldwT2JVTmhaMWRWYjJOcmFuUkhRVEk9IgogICAgCX0KICAgIH0KfQo=
@@ -12,7 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
 name: webby
-namespace: pedemo-qdvw-user9
+namespace: pedemo-c8e6-user0-testing-demo
 spec:
 replicas: 3
 selector:
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: webby-service
-  namespace: pedemo-qdvw-user9
+  namespace: pedemo-c8e6-user0-testing-demo
 spec:
   type: NodePort
   selector:
@@ -57,7 +57,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
 name: condb
-namespace: pedemo-qdvw-user9
+namespace: pedemo-c8e6-user0-testing-demo
 spec:
 selector:
     matchLabels:
@@ -87,7 +87,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: condb-service
-  namespace: pedemo-qdvw-user9
+  namespace: pedemo-c8e6-user0-testing-demo
 spec:
   selector:
     app: condb
