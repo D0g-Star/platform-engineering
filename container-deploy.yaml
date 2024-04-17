@@ -57,7 +57,7 @@ spec:
   selector:
     app: webby
   ports:
-    - nodePort: 31998
+    - nodePort: 31999
       port: 80
       targetPort: 9999
       
