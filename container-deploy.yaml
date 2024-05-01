@@ -6,7 +6,7 @@ metadata:
   namespace: pedemo-3ofz-user0
 type: kubernetes.io/dockerconfigjson
 data:
-  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5naXRsYWIuY29tIjp7InVzZXJuYW1lIjoiam9uYXRoYW4uaG9va2VyQGNkdy5jb20iLCJwYXNzd29yZCI6ImdscGF0LU15OWFxd3ZWbnBUMnp2YU1TWk1mIiwiZW1haWwiOiJqb25hdGhhbi5ob29rZXJAY2R3LmNvbSIsImF1dGgiOiJhbTl1WVhSb1lXNHVhRzl2YTJWeVFHTmtkeTVqYjIwNloyeHdZWFF0VFhrNVlYRjNkbFp1Y0ZReWVuWmhUVk5hVFdZPSJ9fX0=
+  .dockerconfigjson: reinput token
 
 ---
 apiVersion: apps/v1
