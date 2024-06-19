@@ -3,17 +3,17 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: gitlab-pull-secret
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 type: kubernetes.io/dockerconfigjson
 data:
-  .dockerconfigjson: reinput token
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5naXRsYWIuY29tIjp7InVzZXJuYW1lIjoiam9uYXRoYW4uaG9va2VyQGNkdy5jb20iLCJwYXNzd29yZCI6ImdscGF0LVN0RzJ4VjVpNnVUUlU5bmhTZHJ5IiwiZW1haWwiOiJqb25hdGhhbi5ob29rZXJAY2R3LmNvbSIsImF1dGgiOiJhbTl1WVhSb1lXNHVhRzl2YTJWeVFHTmtkeTVqYjIwNloyeHdZWFF0VTNSSE1uaFdOV2syZFZSU1ZUbHVhRk5rY25rPSJ9fX0=
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webby
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 spec:
   replicas: 3
   selector:
@@ -31,7 +31,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: NAMESPACE
-            value: "pedemo-3ofz-user0"
+            value: "pedemo-c8e6-user0"
         resources:
           requests:
             cpu: 50m
@@ -47,7 +47,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: webby-service
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 spec:
   type: ClusterIP
   selector:
@@ -61,7 +61,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: webby
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 spec:
   tls:
     termination: edge
@@ -77,7 +77,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: condb
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 spec:
   selector:
     matchLabels:
@@ -108,7 +108,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: condb-service
-  namespace: pedemo-3ofz-user0
+  namespace: pedemo-c8e6-user0
 spec:
   selector:
     app: condb
