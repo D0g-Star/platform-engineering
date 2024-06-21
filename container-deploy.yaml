@@ -34,7 +34,7 @@ spec:
             value: "pedemo-c8e6-user0"
         resources:
           requests:
-            cpu: 50m
+            cpu: 100m
             memory: 64Mi
           limits:
             cpu: 200m
